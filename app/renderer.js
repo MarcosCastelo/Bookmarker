@@ -23,6 +23,11 @@ const storeLink = (title, url) => {
     localStorage.setItem(url, JSON.stringify({ title: title, url: url}));
 }
 
+const getLinks = () => {
+    return Object.keys(localStorage)
+        .map(key => JSON.parse(localStorage.getItem(key)))
+}
+
 newLinkForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -30,7 +35,9 @@ newLinkForm.addEventListener('submit', (event) => {
     fetch(url)
         .then(response => response.text())
         .then(parseResponse)
-        .then(findTitle);
+        .then(findTitle)
+        .then(title => storeLink(title, url)).
+        then(clearForm);
 })
 
 newLinkUrl.addEventListener('keyup', () => {
