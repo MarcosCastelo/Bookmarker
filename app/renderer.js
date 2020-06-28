@@ -12,3 +12,9 @@ newLinkUrl.addEventListener('keyup', () => {
 const clearForm = () => {
     newLinkForm.value = null;
 };
+
+newLinkForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const url = newLinkUrl.value;
+})
