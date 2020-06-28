@@ -44,6 +44,8 @@ const renderLinks = () => {
     linksSection.innerHTML = linkElements;
 }
 
+renderLinks();
+
 newLinkForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -52,10 +54,16 @@ newLinkForm.addEventListener('submit', (event) => {
         .then(response => response.text())
         .then(parseResponse)
         .then(findTitle)
-        .then(title => storeLink(title, url)).
-        then(clearForm);
-})
+        .then(title => storeLink(title, url))
+        .then(clearForm)
+        .then(renderLinks);
+});
 
 newLinkUrl.addEventListener('keyup', () => {
     newLinkSubmit.disabled = !newLinkUrl.validty.valid;
+});
+
+clearStorageButton.addEventListener('click', () => {
+    localStorage.clear();
+    linksSection.innerHTML = '';
 });
