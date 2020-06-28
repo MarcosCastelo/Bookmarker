@@ -18,6 +18,13 @@ newLinkForm.addEventListener('submit', (event) => {
 
     const url = newLinkUrl.value;
     const parser = new DOMParser();
+    const parseResponse = (text) => {
+        return parser.parseFromString(text, 'text/html');
+    }
+
+    const findTitle = (nodes) => {
+        return nodes.querySelector('title').innerText;
+    }
     fetch(url)
         .then(response => response.text());
 })
