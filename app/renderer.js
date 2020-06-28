@@ -19,6 +19,10 @@ const findTitle = (nodes) => {
     return nodes.querySelector('title').innerText;
 }
 
+const storeLink = (title, url) => {
+    localStorage.setItem(url, JSON.stringify({ title: title, url: url}));
+}
+
 newLinkForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
