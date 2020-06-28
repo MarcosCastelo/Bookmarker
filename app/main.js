@@ -9,5 +9,6 @@ app.on('ready', () =>{
             nodeIntegration: true
         }
     });
+    mainWindow.webContents.openDevTools();
     mainWindow.webContents.loadFile('index.html');
 })

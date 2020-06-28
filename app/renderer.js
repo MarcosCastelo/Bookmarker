@@ -2,13 +2,14 @@ const parser = new DOMParser();
 
 const linksSection = document.querySelector('.links');
 const errorMessage = document.querySelector('.error-message');
-const newLinkForm = document.querySelector('new-link-form');
-const newLinkUrl = document.querySelector('.new-link-url')
+const newLinkForm = document.querySelector('.new-link-form');
+const newLinkUrl = document.querySelector('.new-link-url');
 const newLinkSubmit = document.querySelector('.new-link-submit');
 const clearStorageButton = document.querySelector('.clear-storage');
 
+
 const clearForm = () => {
-    newLinkForm.value = null;
+    newLinkUrl.value = null;
 };
 
 const parseResponse = (text) => {
@@ -30,7 +31,7 @@ const getLinks = () => {
 
 const convertToElement = (link) => {
     return `
-        <div clss="link">
+        <div class="link">
             <h3>${link.title}</h3>
             <p>
                 <a href="${link.url}">${link.url}</a>
@@ -44,7 +45,9 @@ const renderLinks = () => {
     linksSection.innerHTML = linkElements;
 }
 
-renderLinks();
+newLinkUrl.addEventListener('keyup', () => {
+    newLinkSubmit.disabled = !newLinkUrl.validity.valid;
+});
 
 newLinkForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -59,11 +62,9 @@ newLinkForm.addEventListener('submit', (event) => {
         .then(renderLinks);
 });
 
-newLinkUrl.addEventListener('keyup', () => {
-    newLinkSubmit.disabled = !newLinkUrl.validty.valid;
-});
-
 clearStorageButton.addEventListener('click', () => {
     localStorage.clear();
     linksSection.innerHTML = '';
 });
+
+renderLinks();
