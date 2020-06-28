@@ -17,6 +17,7 @@ newLinkForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const url = newLinkUrl.value;
+    const parser = new DOMParser();
     fetch(url)
         .then(response => response.text());
 })
