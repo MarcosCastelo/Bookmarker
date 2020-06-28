@@ -4,6 +4,7 @@
   "description": "A simple electron project",
   "main": "./app/main.js",
   "scripts": {
+    "start": "electron ./app/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marcos Castelo",
