@@ -25,7 +25,18 @@ const storeLink = (title, url) => {
 
 const getLinks = () => {
     return Object.keys(localStorage)
-        .map(key => JSON.parse(localStorage.getItem(key)))
+        .map(key => JSON.parse(localStorage.getItem(key)));
+}
+
+const convertToElement = (link) => {
+    return `
+        <div clss="link">
+            <h3>${link.title}</h3>
+            <p>
+                <a href="${link.url}">${link.url}</a>
+            </p>
+        </div>
+    `;
 }
 
 newLinkForm.addEventListener('submit', (event) => {
