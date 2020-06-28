@@ -52,6 +52,11 @@ const handleError = (error, url) => {
     setTimeout (() => errorMessage.innerText = null, 5000);
 }
 
+const validateResponse = (response) => {
+    if (response.ok) { return response; }
+    throw new Error(`Status code of ${response.status} ${response.statusText}`);
+}
+
 newLinkUrl.addEventListener('keyup', () => {
     newLinkSubmit.disabled = !newLinkUrl.validity.valid;
 });
@@ -61,6 +66,7 @@ newLinkForm.addEventListener('submit', (event) => {
 
     const url = newLinkUrl.value;
     fetch(url)
+        .then(validateResponse)
         .then(response => response.text())
         .then(parseResponse)
         .then(findTitle)
