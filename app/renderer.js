@@ -39,6 +39,11 @@ const convertToElement = (link) => {
     `;
 }
 
+const renderLinks = () => {
+    const linkElements = getLinks().map(convertToElement).join('');
+    linksSection.innerHTML = linkElements;
+}
+
 newLinkForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
