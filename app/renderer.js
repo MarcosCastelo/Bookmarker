@@ -33,11 +33,15 @@ const getLinks = () => {
 
 const convertToElement = (link) => {
     return `
-        <div class="link">
-            <h3>${link.title}</h3>
+        <div class="link-row">
+            <div class="link-column">
+            <h2>${link.title}</h2>
+            </div>
+            <div class="link-column">
             <p>
                 <a href="${link.url}">${link.url}</a>
             </p>
+            </div>
         </div>
     `;
 }
@@ -49,9 +53,9 @@ const renderLinks = () => {
 
 const handleError = (error, url) => {
     errorMessage.innerHTML = `
-        There was an issue adding "${url}": ${error.message}
-    `.trim()
-    setTimeout (() => errorMessage.innerText = null, 5000);
+        <p>There was an issue adding "${url}": ${error.message}</p>
+    `.trim();
+    setTimeout(() => errorMessage.innerText = null, 5000);
 }
 
 const validateResponse = (response) => {
