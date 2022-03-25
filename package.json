@@ -10,6 +10,6 @@
   "author": "Marcos Castelo",
   "license": "ISC",
   "dependencies": {
-    "electron": "^9.0.5"
+    "electron": "^13.6.6"
   }
 }
